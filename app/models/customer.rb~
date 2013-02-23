@@ -24,7 +24,7 @@ class Customer < ActiveRecord::Base
   end
   
   def tid
-    table.tid
+    table.id
   end
   
   def total_cost
