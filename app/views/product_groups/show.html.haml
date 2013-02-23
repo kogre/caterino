@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Ordering:
+  = @product_group.ordering
+%p
+  %b Name:
+  = @product_group.name
+
+= link_to 'Edit', edit_product_group_path(@product_group)
+\|
+= link_to 'Back', product_groups_path

@@ -1,0 +1,28 @@
+= form_for @table do |f|
+  - if @table.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@table.errors.count, "error")} prohibited this table from being saved:"
+      %ul
+        - @table.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :x
+    = f.number_field :x
+  .field
+    = f.label :y
+    = f.number_field :y
+  .field
+    = f.label :h
+    = f.number_field :h
+  .field
+    = f.label :w
+    = f.number_field :w
+  .field
+    = f.label :capacity
+    = f.number_field :capacity
+  .field
+    = f.label :tid
+    = f.number_field :tid
+  .actions
+    = f.submit 'Save'

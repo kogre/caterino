@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b X:
+  = @table.x
+%p
+  %b Y:
+  = @table.y
+%p
+  %b H:
+  = @table.h
+%p
+  %b W:
+  = @table.w
+%p
+  %b Capacity:
+  = @table.capacity
+%p
+  %b Tid:
+  = @table.tid
+
+= link_to 'Edit', edit_table_path(@table)
+\|
+= link_to 'Back', tables_path

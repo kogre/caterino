@@ -1,0 +1,21 @@
+%h1 Listing order_notes
+
+= will_paginate @order_notes 
+
+%table
+  %tr
+    %th Customer
+    %th Time
+    %th
+    %th
+    %th
+
+  - @order_notes.each do |order_note|
+    %tr
+      %td= order_note.customer
+      %td= time_ago_in_words order_note.created_at
+      %td= link_to 'Show', order_note
+      %td= link_to 'Edit', edit_order_note_path(order_note)
+      %td= link_to 'Destroy', order_note, method: :delete, data: { confirm: 'Are you sure?' }
+
+= will_paginate @order_notes 

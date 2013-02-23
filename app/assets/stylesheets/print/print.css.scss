@@ -1,0 +1,52 @@
+body{
+  width: 130mm;
+  font-size: 11pt;
+}
+table {
+  width: 100%;
+}
+
+h2{
+text-align: center;
+}
+
+span{
+  padding-bottom: 5mm;
+}
+
+span.time{
+  float:right;
+}
+
+.even{
+  background-color: #f6f6f6;
+}
+
+td.order-header {
+  text-align:center;
+  border: 1px solid #cccccc;
+}
+
+td.total-price{
+  text-align: right;
+}
+
+#total-cost-value{
+  text-align:right;
+}
+
+#cost-paid-value{
+  text-align:right;
+}
+
+#cost-due-value{
+  font-weight: bold;
+  text-align:right;
+}
+
+tr.whitespace {
+  height: 5mm;
+}
+
+
+

@@ -1,0 +1,40 @@
+%h2
+  Pannenkoekenfestijn JMA Pro Musica
+%span.customer
+  =@payment.customer.name+","
+  Tafel
+  = @payment.customer.tid
+%span.time= l Time.now
+
+
+%table
+  
+  - @payment.customer.order_notes.each do |on|
+    %tr
+      %td.order-header{:colspan => 4}
+        Geleverd om 
+        =l on.created_at, format: :timeonly
+    - reset_cycle
+    - on.order_note_components.each do |onc|
+      %tr{class: cycle("odd", "even")}
+        %td.product= onc.product.name
+        %td.unit-price= number_to_currency onc.product.price
+        %td.amount= onc.amount
+        %td.total-price= number_to_currency(onc.amount.to_f * onc.product.price)
+    %tr.whitespace
+  %tr.whitespace
+  %tr#total-cost
+    %td#total-cost-label{:colspan => 3} 
+      Totale Kost 
+    %td#total-cost-value
+      = number_to_currency @payment.customer.total_cost
+  %tr#cost-paid
+    %td#cost-paid-label{:colspan => 3} 
+      Reeds Betaald
+    %td#cost-paid-value
+      = number_to_currency @payment.customer.cost_paid
+  %tr#cost-due
+    %td#cost-due-label{:colspan => 3} 
+      Te Betalen 
+    %td#cost-due-value
+      = number_to_currency @payment.customer.cost_due

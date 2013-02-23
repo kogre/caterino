@@ -1,0 +1,38 @@
+%h1 Active customers
+
+%table
+  %tr
+    %th Table
+    %th Name
+    %th
+    %th
+
+  - @active_customers.each do |customer|
+    %tr
+      %td= customer.table.tid
+      %td= customer.name
+      %td= link_to 'Show', customer
+      %td= link_to 'Edit', edit_customer_path(customer)
+      %td= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' }
+
+
+%h1 Paid customers
+
+%table
+  %tr
+    %th Table
+    %th Name
+    %th
+    %th
+
+  - @paid_customers.each do |customer|
+    %tr
+      %td= customer.table.tid
+      %td= customer.name
+      %td= link_to 'Show', customer
+      %td= link_to 'Edit', edit_customer_path(customer)
+      %td= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Customer', new_customer_path

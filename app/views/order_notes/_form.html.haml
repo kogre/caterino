@@ -1,0 +1,38 @@
+= form_for @order_note do |f|
+  - if @order_note.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@order_note.errors.count, "error")} prohibited this order_note from being saved:"
+      %ul
+        - @order_note.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = label_tag :table
+    = text_field_tag "customer_table", "", :id => "table_field", :autocomplete => :off
+  .field
+    = label_tag :customer
+    = autocomplete_field_tag 'customer_name', '', url_for(:controller => :customers, :action => 'autocomplete_customer_name'), :update_elements => {:tid => '#table_field'}
+  - @last_group = nil
+  = f.fields_for :order_note_components do |of|
+    - if of.object.product.product_group != @last_group
+      - if @last_group != nil
+        \</div>
+      \<div class="product-group-form">
+      %h1
+        = of.object.product.product_group.name
+    - @last_group = of.object.product.product_group
+    .product-component
+      .minus-button.product-button
+        = "-"
+      .plus-button.product-button
+        .product-name
+          = of.object.product.name
+        = of.hidden_field :product_id
+        .product-amount
+          = of.text_field :amount, :autocomplete => :off, :class => "product-component-amount-form"
+        .clear
+      .clear
+  \</div>
+  .clear
+  .actions
+    = f.submit 'Save'

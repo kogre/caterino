@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Caterino</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<%= link_to "Order Entry", new_order_note_path %>
+|
+<%= link_to "Order Notes", order_notes_path %>
+|
+<%= link_to "Payments", payments_path %>
+|
+<%= link_to "Customers", customers_path %>
+|
+<%= link_to "Product Groups", product_groups_path %>
+|
+<%= link_to "Products", products_path %>
+|
+<%= link_to "Tables", tables_path %>
+
+<hr />
+
+<%= yield %>
+
+</body>
+</html>

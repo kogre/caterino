@@ -1,0 +1,5 @@
+nl:
+  time:
+    formats:
+      timeonly: "%H:%M"
+

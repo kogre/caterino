@@ -1,0 +1,29 @@
+%h1 Listing tables
+
+%table
+  %tr
+    %th X
+    %th Y
+    %th H
+    %th W
+    %th Capacity
+    %th Tid
+    %th
+    %th
+    %th
+
+  - @tables.each do |table|
+    %tr
+      %td= table.x
+      %td= table.y
+      %td= table.h
+      %td= table.w
+      %td= table.capacity
+      %td= table.tid
+      %td= link_to 'Show', table
+      %td= link_to 'Edit', edit_table_path(table)
+      %td= link_to 'Destroy', table, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Table', new_table_path

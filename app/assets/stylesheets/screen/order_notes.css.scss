@@ -1,0 +1,63 @@
+// Place all the styles related to the order_notes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.product-group-form{
+  width: 250px;
+  float: left;
+  padding: 15px;
+}
+
+.product-component{
+  padding: 5px;
+}
+
+.product-button{
+  height: 45px;
+  border: 1px solid black;
+  &:hover{
+    background-color: grey;
+  }
+  
+  cursor: default;
+  
+  -webkit-user-select: none; /* Chrome/Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+ */
+
+  /* Rules below not implemented in browsers yet */
+  -o-user-select: none;
+  user-select: none;
+}
+
+.plus-button{
+  float: right;
+  width: 80%;
+  
+  .product-name {
+    width: 70%;
+    font-size:15px;
+    padding: 5px;
+    float:left;
+  }
+
+  .product-amount{
+    width:20%;
+    float:right;
+  }
+}
+
+.minus-button{
+  float: left;
+  width: 10%;
+}
+
+.product-component-amount-form{
+  width: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  border:none;
+  background: transparent;
+}
+
+

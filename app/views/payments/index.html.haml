@@ -1,0 +1,44 @@
+%h1 New
+
+=render 'form'
+
+%h1 Requested
+
+%table
+  %tr
+    %th Customer
+    %th Amount
+    %th
+    %th
+    %th
+
+  - @requested_payments.each do |payment|
+    %tr
+      %td= payment.customer
+      %td= payment.amount
+      %td
+        = form_for payment, url: payoff_payment_path(payment) do |f|
+          = f.submit 'Pay Off'
+      %td= link_to 'Re-print', print_payment_path(payment), 'data-popup' => true
+      %td= link_to 'Destroy', payment, method: :delete, data: { confirm: 'Are you sure?' }
+
+
+%h1 Paid
+
+%table
+  %tr
+    %th Customer
+    %th Amount
+    %th Type
+    %th
+    %th
+    %th
+
+  - @paid_payments.each do |payment|
+    %tr
+      %td= payment.customer
+      %td= payment.amount
+      %td= payment.type
+      %td= link_to 'Show', payment
+      %td= link_to 'Edit', edit_payment_path(payment)
+      %td= link_to 'Destroy', payment, method: :delete, data: { confirm: 'Are you sure?' }

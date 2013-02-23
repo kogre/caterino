@@ -1,0 +1,10 @@
+%p
+  %b Customer:
+  = order_note.customer
+  %b Time:
+  = l order_note.created_at, :format => :timeonly
+%p
+  = render order_note.order_note_components
+
+  
+

@@ -1,0 +1,20 @@
+= form_for @payment, :remote => true do |f|
+  - if @payment.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@payment.errors.count, "error")} prohibited this payment from being saved:"
+      %ul
+        - @payment.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = label_tag :table
+    = text_field_tag "customer_table", "", :id => "table_field", :autocomplete => :off
+  .field
+    = label_tag :customer
+    = autocomplete_field_tag 'customer_name', '', url_for(:controller => :customers, :action => 'autocomplete_customer_name'), :update_elements => {:tid => '#table_field'}
+
+
+  = f.hidden_field :type
+  = f.hidden_field :status
+  .actions
+    = f.submit 'Print'
