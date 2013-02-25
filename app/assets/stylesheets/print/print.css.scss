@@ -1,6 +1,6 @@
 body{
-  width: 130mm;
-  font-size: 11pt;
+  width: 115mm;
+  font-size: 9pt;
 }
 table {
   width: 100%;
@@ -8,6 +8,7 @@ table {
 
 h2{
 text-align: center;
+font-size: 15pt;
 }
 
 span{
@@ -42,10 +43,11 @@ td.total-price{
 #cost-due-value{
   font-weight: bold;
   text-align:right;
+  font-size: 12pt;
 }
 
 tr.whitespace {
-  height: 5mm;
+  height: 3mm;
 }
 
 

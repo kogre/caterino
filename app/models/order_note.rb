@@ -24,4 +24,12 @@ class OrderNote < ActiveRecord::Base
     order_note_states.order("created_at DESC").first.state
   end
   
+  def cost
+    total = 0
+    order_note_components.each do |onc|
+      total += onc.product.price * onc.amount
+    end
+    total
+  end
+  
 end

@@ -69,7 +69,7 @@ class OrderNotesController < ApplicationController
 
     respond_to do |format|
       if (not table_error) and @order_note.save
-        format.html { redirect_to new_order_note_path, notice: 'Order note was successfully created.' }
+        format.html { redirect_to new_order_note_path, notice: 'Order note from '+@order_note.customer.to_s+' for '+@order_note.cost.to_s+' succes.' }
         format.json { render json: @order_note, status: :created, location: @order_note }
       else
         @order_note.errors.add(:customer, "Table does not exist") if table_error

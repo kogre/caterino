@@ -13,6 +13,6 @@ $(function(){
      }
   });
   
-  $("#table_field").focus();
+  $("#customer_name").focus();
   
 });

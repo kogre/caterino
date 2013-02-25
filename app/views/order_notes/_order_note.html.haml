@@ -4,7 +4,11 @@
   %b Time:
   = l order_note.created_at, :format => :timeonly
 %p
+  = link_to 'Edit', edit_order_note_path(order_note)
+  = link_to 'Destroy', order_note, method: :delete, data: { confirm: 'Are you sure?' }
+%p
   = render order_note.order_note_components
+  
 
   
 

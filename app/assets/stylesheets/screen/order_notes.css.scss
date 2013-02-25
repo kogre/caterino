@@ -9,11 +9,11 @@
 }
 
 .product-component{
-  padding: 5px;
+  padding: 3px;
 }
 
 .product-button{
-  height: 45px;
+  height: 42px;
   border: 1px solid black;
   &:hover{
     background-color: grey;
@@ -58,6 +58,11 @@
   font-weight: bold;
   border:none;
   background: transparent;
+}
+
+input[type=submit] {
+  padding:20px;
+  width: 100%;
 }
 
 
