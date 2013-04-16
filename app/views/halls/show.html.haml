@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%h1= @hall.name
+
+.hall{data: {id: @hall.id}, :style => "width: #{@hall.w}px; height: #{@hall.h}px;"}
+
+  = render partial: "table", collection: @hall.tables.includes(:customers)
+
+= link_to 'Edit', edit_hall_path(@hall)

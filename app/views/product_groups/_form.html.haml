@@ -12,5 +12,9 @@
   .field
     = f.label :name
     = f.text_field :name
+  .field
+    = f.label :color
+    = f.text_field :color, class: "colorpicker_field"
+    .colorpicker_widget
   .actions
     = f.submit 'Save'

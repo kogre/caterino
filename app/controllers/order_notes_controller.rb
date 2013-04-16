@@ -19,6 +19,7 @@ class OrderNotesController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @order_note }
+      format.svg  { render :qrcode => @order_note.id.to_s, :level => :h, :unit => 11 }
     end
   end
 
@@ -53,17 +54,24 @@ class OrderNotesController < ApplicationController
   def create    
     table_error = false
     
-    @table = Table.where(:tid => params[:customer_table]).first
-    if not @table.nil?
-      @customers = @table.customers.where(:name => params[:customer_name])
-      if @customers.empty?
-        params[:order_note][:customer_attributes] = {:table_id => @table.id, :name => params[:customer_name]}
-      else
-        params[:order_note][:customer_id] = @customers.first.id
-      end
-    else #if table doesn't exist
-      table_error = true
-    end 
+    begin
+      customer = parse_customer_selection_string params[:customer_selection]
+      @table = Table.where(:tid => customer[:tid]).first
+      if not @table.nil?
+        @customers = @table.customers.where(:name => customer[:name])
+        if @customers.empty?
+          params[:order_note][:customer_attributes] = {:table_id => @table.id, :name => customer[:name]}
+        else
+          params[:order_note][:customer_id] = @customers.first.id
+        end
+      else #if table doesn't exist
+        table_error = true
+      end 
+      
+    rescue
+      table_error = true;
+    end
+        
     
     @order_note = OrderNote.new(params[:order_note])
 
@@ -72,7 +80,7 @@ class OrderNotesController < ApplicationController
         format.html { redirect_to new_order_note_path, notice: 'Order note from '+@order_note.customer.to_s+' for '+@order_note.cost.to_s+' succes.' }
         format.json { render json: @order_note, status: :created, location: @order_note }
       else
-        @order_note.errors.add(:customer, "Table does not exist") if table_error
+        @order_note.errors.add(:customer, "Table does not exist or customer string is illformed.") if table_error
         format.html { render action: "new" }
         format.json { render json: @order_note.errors, status: :unprocessable_entity }
       end

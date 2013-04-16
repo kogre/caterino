@@ -5,12 +5,11 @@
       %ul
         - @order_note.errors.full_messages.each do |msg|
           %li= msg
-  .field          
-    = label_tag :customer
-    = autocomplete_field_tag 'customer_name', '', url_for(:controller => :customers, :action => 'autocomplete_customer_name'), :update_elements => {:tid => '#table_field'}
+    
+  = render "customers/customer_selection"
   .field
-    = label_tag :table
-    = text_field_tag "customer_table", "", :id => "table_field", :autocomplete => :off
+    = label_tag :quick_component_entry, "Quick Entry"
+    = text_field_tag :quick_component_entry, "", disabled: true
 
   - @last_group = nil
   = f.fields_for :order_note_components do |of|
@@ -24,7 +23,7 @@
     .product-component
       .minus-button.product-button
         = "-"
-      .plus-button.product-button
+      .plus-button.product-button{"data-product-id" => of.object.product.id}
         .product-name
           = of.object.product.name
         = of.hidden_field :product_id

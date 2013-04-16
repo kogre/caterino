@@ -18,6 +18,7 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+  gem 'jquery-ui-rails'
 end
 
 gem 'jquery-rails'
@@ -41,4 +42,9 @@ gem 'nested_form'
 gem 'rails3-jquery-autocomplete'
 gem 'rails-i18n'
 gem 'will_paginate', '~> 3.0.0'
+gem 'farbtastic-rails'
+gem 'rqrcode-rails3'
+gem 'websocket-rails'
+gem 'thin'
 # gem 'debugger'
+

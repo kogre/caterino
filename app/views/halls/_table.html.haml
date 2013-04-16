@@ -1,0 +1,9 @@
+.table{data: {id: table.id}, style: "width: #{table.w}px; height: #{table.h}px; top: #{table.y}px; left: #{table.x}px;"}
+  .tid= table.tid
+  - active_customers = table.customers.actives.count
+  - width_percentage = (100/active_customers).to_i if active_customers > 0
+  - table.customers.actives.each_with_index do |c,i|
+    .table_customer{style: "width: #{width_percentage}%; left: #{table.w*i/active_customers}px; background-color: #{c.highest_product_group.color};"}
+      .name= c.name
+      = c.highest_product_group.name
+

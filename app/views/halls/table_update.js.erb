@@ -1,0 +1,1 @@
+$('.table[data-id="<%= @table.id %>"]').replaceWith("<%= escape_javascript(render partial: 'table', object: @table) %>");

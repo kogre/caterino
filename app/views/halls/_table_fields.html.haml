@@ -1,0 +1,8 @@
+.table_container.fields{style: "width: #{f.object.w}px; height: #{f.object.h}px; top: #{f.object.y}px; left: #{f.object.x}px;"}
+  = f.link_to_remove "x"
+  = f.text_field :tid
+  = f.number_field :capacity
+  = f.hidden_field :w, class: "table_w_selector"
+  = f.hidden_field :h, class: "table_h_selector"
+  = f.hidden_field :x, class: "table_x_selector"
+  = f.hidden_field :y, class: "table_y_selector"

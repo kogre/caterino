@@ -1,5 +1,9 @@
 Caterino::Application.routes.draw do
 
+  resources :halls
+  match 'halls/table_update/:table_id' => 'halls#table_update'
+
+
   resources :payments do
     member do
       get 'print'
@@ -23,6 +27,9 @@ Caterino::Application.routes.draw do
 
 
   resources :products
+  
+  match 'statistics/:action' => 'statistics#action'
+  match 'statistics' => 'statistics#summary'
 
 
   # The priority is based upon order of creation:

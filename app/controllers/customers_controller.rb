@@ -2,7 +2,7 @@ class CustomersController < ApplicationController
 
   def autocomplete_customer_name  
     if params[:tid].nil?
-      @customers = Customer.actives
+      @customers = Customer.actives.joins(:table).order("tables.tid ASC")
     else
       @customers = Customer.actives.joins(:table).where(:tables => {:tid => params[:tid]})
     end

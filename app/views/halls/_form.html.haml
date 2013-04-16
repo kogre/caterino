@@ -1,0 +1,22 @@
+= nested_form_for @hall do |f|
+  - if @hall.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@hall.errors.count, "error")} prohibited this hall from being saved:"
+      %ul
+        - @hall.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+    = f.hidden_field :w
+    = f.hidden_field :h
+    
+  #hall_container{style: "width: #{f.object.w}px; height: #{f.object.h}px;"}
+    = f.fields_for :tables, :wrapper => false
+    
+  %p
+    = f.link_to_add "Add a table", :tables, :model_object => f.object.tables.build(x: 30, y: 30)
+  
+  .actions
+    = f.submit 'Save'

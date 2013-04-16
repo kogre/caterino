@@ -12,7 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
 //= require jquery_nested_form
 //= require jquery-ui
 //= require autocomplete-rails
+//= require farbtastic
+//= require_tree .
+//= require websocket_rails/main
+

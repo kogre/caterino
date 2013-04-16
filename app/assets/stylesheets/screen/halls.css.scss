@@ -1,0 +1,52 @@
+// Place all the styles related to the halls controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// _form defenitions
+
+#hall_container{
+  border: 1px solid black;
+}
+
+.table_container {
+  position: absolute;
+  border: 1px solid black;
+  a{ text-align:right; }
+  input {
+    width: 25px;
+  }
+}
+
+
+//show definitions
+
+.hall{
+  border: 1px solid black;
+  position: relative;
+}
+
+.table {
+  position: absolute;
+  border: 1px solid black;
+  
+  .tid {
+    font-weight: bold;
+    font-size: 2em;
+    text-align: center;
+    z-index: 2;
+  }
+  
+  .table_customer {
+    z-index: -1;
+    position: absolute;
+    padding-top: 1.5em;
+    top: 0px;
+    bottom: 0px;
+    
+    .name { font-size: 0.5 em}
+
+  } 
+
+}
+
+

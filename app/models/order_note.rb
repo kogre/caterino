@@ -11,6 +11,7 @@ class OrderNote < ActiveRecord::Base
   accepts_nested_attributes_for :customer
   
   after_save :update_customer_active_cache
+  after_save {|on| on.customer.table.broadcast_table_update}
   after_destroy :update_customer_active_cache
   
   self.per_page = 25

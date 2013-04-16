@@ -3,17 +3,21 @@ class Customer < ActiveRecord::Base
   has_many :order_notes, :dependent => :destroy
   has_many :payments, :dependent => :destroy
   
-  attr_accessible :name, :table_id, :tid, :active
+  attr_accessible :name, :table_id, :tid, :active, :table
   
   validates :name, :table_id, :presence => true
   #validates :active, :inclusion => { :in => %w(yes paid) }
 
-  #scope :actives, lambda {where('customers.id not in (?)', Payment.all.blank? ? ' ' : Payment.all.map{|p| p.customer_id})}
   scope :actives, where(:active => 'yes')
   scope :paid, where(:active => 'paid')
   
-  #before_validation :update_active_cache
   before_create {|c| c.active="yes"}
+  before_save :broadcast_table_update
+  
+  def broadcast_table_update
+    Table.find(table_id_was).broadcast_table_update if table_id_changed? unless table_id_was.nil?
+    table.broadcast_table_update
+  end
   
   def update_active_cache
     self.active = cost_due > 0 ? "yes" : "paid"
@@ -47,6 +51,22 @@ class Customer < ActiveRecord::Base
   
   def to_s
     name+"("+tid.to_s+")"
+  end
+  
+  def highest_product_group
+    highest_ordering = 0
+    result = nil
+    
+    order_notes.includes(:order_note_components).each do |on|
+      on.order_note_components.each do |onc|
+        if onc.product.product_group.ordering > highest_ordering
+          highest_ordering = onc.product.product_group.ordering
+          result = onc.product.product_group
+        end
+      end
+    end
+    
+    result
   end
   
 end

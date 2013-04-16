@@ -24,5 +24,8 @@
   .field
     = f.label :tid
     = f.number_field :tid
+  .field
+    = f.label :hall
+    = f.select :hall_id, Hall.all.collect{|h| [h.name, h.id]}
   .actions
     = f.submit 'Save'
