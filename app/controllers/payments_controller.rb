@@ -52,7 +52,11 @@ class PaymentsController < ApplicationController
     
     customer_error = false
     
-    @customer = Customer.includes(:table).where('tables.tid = ?', params[:customer_table]).where(name: params[:customer_name]).to_a.select{|c|c.active?}[0]
+    # @customer = Customer.includes(:table).where('tables.tid = ?', params[:customer_table]).where(name: params[:customer_name]).to_a.select{|c|c.active?}[0]
+
+    customer_props = parse_customer_selection_string params[:customer_selection]
+    @customer = Customer.includes(:table).where('tables.tid = ?', customer_props[:tid]).where(name: customer_props[:name]).first
+
 
     if @customer.nil?
       customer_error = true

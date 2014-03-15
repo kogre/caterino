@@ -10,7 +10,7 @@ class Table < ActiveRecord::Base
   after_save :broadcast_table_update
   
   def broadcast_table_update
-    hall.broadcast_table_update(self)
+    hall.broadcast_table_update(self) if hall.present?
   end
   
 end
