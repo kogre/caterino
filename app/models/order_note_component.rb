@@ -5,4 +5,8 @@ class OrderNoteComponent < ActiveRecord::Base
   
   validates :product, :amount, :presence => true
 
+  def price
+    product.price * amount
+  end
+
 end

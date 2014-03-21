@@ -18,4 +18,3 @@
 //= require farbtastic
 //= require_tree .
 //= require websocket_rails/main
-

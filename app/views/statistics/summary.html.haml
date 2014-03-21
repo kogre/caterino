@@ -1,2 +1,49 @@
 
-#products_count_chart{data: {"products-count" => @products_count.to_json}}
+%h1 General
+
+%table
+  %tr
+    %td Sales
+    %td= number_to_currency @sales
+  %tr
+    %td #Customers
+    %td= @customers
+  %tr
+    %td #Orders
+    %td= @orders
+  %tr
+    %td Average sales per customer
+    %td= number_to_currency @sales_per_customer
+  %tr
+    %td Average orders per customer
+    %td= @orders_per_customer
+
+%h1 Amount sold by product
+= bar_chart @products_count, height: ((@products_count.size*35).to_s + "px")
+
+%table
+  - @products_count.each do |row|
+    %tr
+      %td= row[0]
+      %td= row[1] 
+
+%h1 Sales by product (EUR)
+= bar_chart @products_sales, height: ((@products_sales.size*35).to_s + "px")
+
+%table
+  - @products_sales.each do |row|
+    %tr
+      %td= row[0]
+      %td= number_to_currency row[1] 
+
+%h1 Sales by product group (EUR)
+= column_chart @sales_by_group
+
+%table
+  - @sales_by_group.each do |row|
+    %tr
+      %td= row[0]
+      %td= number_to_currency row[1]
+
+%h1 Orders by time
+= line_chart @orders_by_hour

@@ -6,6 +6,7 @@ class Product < ActiveRecord::Base
   attr_accessible :active, :name, :pid, :price, :product_group_id, :hotkey
   
   belongs_to :product_group
+  has_many :order_note_components
   
   scope :actives, where(:active => true)
   

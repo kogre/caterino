@@ -1,8 +1,8 @@
 class OrderNote < ActiveRecord::Base
   belongs_to :customer
   
-  has_many :order_note_components
-  has_many :order_note_states
+  has_many :order_note_components, dependent: :destroy
+  has_many :order_note_states, dependent: :destroy
   
   #validates :customer_id, :presence => true
   attr_accessible :customer, :order_note_components_attributes, :customer_attributes, :customer_id
@@ -28,7 +28,7 @@ class OrderNote < ActiveRecord::Base
   def cost
     total = 0
     order_note_components.each do |onc|
-      total += onc.product.price * onc.amount
+      total += onc.price
     end
     total
   end

@@ -46,5 +46,6 @@ gem 'farbtastic-rails'
 gem 'rqrcode-rails3'
 gem 'websocket-rails'
 gem 'thin'
+gem 'chartkick'
 # gem 'debugger'
 
